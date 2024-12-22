@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Nest Admin Dashboard</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* Sidebar Section */
+        .sidebar {
+            background-color: #34495e;
+            color: #fff;
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 40px;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 25px 0;
+        }
+
+        .sidebar ul li a {
+            color: #bdc3c7;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: block;
+            padding: 12px 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+            min-height: 100vh;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* Buttons */
+        .btn, .request-btn {
+            background-color: #f39c12;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover, .request-btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Order Table Styles */
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .order-table th, .order-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .order-table th {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        .order-table td {
+            background-color: #fff;
+        }
+
+        /* Fuel Details Form */
+        .fuel-form {
+            background-color: #fff;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .fuel-form label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fuel-form input,
+        .fuel-form select {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .fuel-form button {
+            background-color: #f39c12;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .fuel-form button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal button {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            .main-content {
+                padding: 20px;
+            }
+            .dashboard-cards {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <h1>Fuel Nest Admin Dashboard</h1>
+</header>
+
+<!-- Sidebar Section -->
+<div class="sidebar">
+    <ul>
+        <li><a href="#overview">Dashboard Overview</a></li>
+        <li><a href="#orders">Order Management</a></li>
+        <li><a href="#pricing">Fuel Pricing Management</a></li>
+        <li><a href="#inventory">Inventory Management</a></li>
+        <li><a href="#delivery">Delivery Management</a></li>
+        <li><a href="#billing">Payment & Billing</a></li>
+        <li><a href="#feedback">Customer Feedback</a></li>
+        <li><a href="#analytics">Analytics & Reports</a></li>
+        <li><a href="#settings">Settings</a></li>
+    </ul>
+</div>
+
+<!-- Main Content Section -->
+<div class="main-content">
+    <section id="overview">
+        <h2>Dashboard Overview</h2>
+        <div class="dashboard-cards">
+            <!-- Sales Summary Card -->
+            <div class="card">
+                <h2>Sales Summary</h2>
+                <p>Track total sales, revenue, and performance metrics for the day, week, or month.</p>
+            </div>
+            <!-- Inventory Status Card -->
+            <div class="card">
+                <h2>Inventory Status</h2>
+                <p>Monitor the stock of fuels and products, and view low stock alerts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2>Fuel Pricing Management</h2>
+        <div class="fuel-form">
+            <h3>Edit Fuel Details</h3>
+            <form action="#">
+                <label for="fuelType">Fuel Type:</label>
+                <input type="text" id="fuelType" name="fuelType" placeholder="Enter fuel type" required>
+
+                <label for="fuelPrice">Price per Liter:</label>
+                <input type="number" id="fuelPrice" name="fuelPrice" placeholder="Enter price" required>
+
+                <label for="fuelAvailability">Availability:</label>
+                <select id="fuelAvailability" name="fuelAvailability">
+                    <option value="available">Available</option>
+                    <option value="outOfStock">Out of Stock</option>
+                </select>
+
+                <button type="submit">Update Fuel Details</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Delivery Request -->
+    <section id="delivery">
+        <h2>Delivery Management</h2>
+        <div class="card">
+            <h2>Available Delivery Personnel</h2>
+            <p>Check available delivery personnel to send requests for pending orders.</p>
+            <button class="request-btn" onclick="sendDeliveryRequest(123)">Send Delivery Request</button>
+        </div>
+    </section>
+
+    <a href="#" class="logout-btn">Logout</a>
+</div>
+
+<!-- Modal for Delivery Request -->
+<div class="modal" id="deliveryModal">
+    <div class="modal-content">
+        <h3>Delivery Request Sent</h3>
+        <p>Your request for a delivery personnel has been sent.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    // Function to trigger the delivery request
+    function sendDeliveryRequest(orderId) {
+        console.log("Sending delivery request for Order ID:", orderId);
+        const modal = document.getElementById('deliveryModal');
+        modal.style.display = 'flex';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        const modal = document.getElementById('deliveryModal');
+        modal.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

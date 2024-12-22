@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f5f7; /* Light background color */
+    }
+
+    /* Main Container */
+    .container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        max-width: 1300px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Left Section Styling */
+    .left-section {
+        flex: 1;
+        background-color: #009688; /* Teal background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .left-section h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .left-section p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    /* Right Section Styling */
+    .right-section {
+        flex: 1;
+        background-color: #ffffff; /* White background for login */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 400px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .card h2 {
+        color: #333;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .card p {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 16px;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .login-option {
+        background-color: #ff5722; /* Orange background color */
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .login-option:hover {
+        background-color: #e64a19; /* Darker orange on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .option-icon {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    .option-text {
+        font-size: 18px;
+    }
+
+    .login-option:focus {
+        outline: none;
+    }
+
+    /* Back Button Styling */
+    .back-btn {
+        background-color: #009688; /* Teal color */
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+        background-color: #00796b; /* Darker teal on hover */
+    }
+
+    .footer {
+        margin-top: 30px;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .footer a {
+        color: #009688; /* Teal color for footer link */
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Left Section -->
+  <div class="left-section">
+    <div>
+      <h1>Welcome Back!</h1>
+      <p>Login to manage your account and access exclusive features.</p>
+    </div>
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-section">
+    <div class="card">
+      <!-- Back Button -->
+      <button class="back-btn" onclick="goBack()">← Back</button>
+
+      <h2>Login Options</h2>
+      <p>Select your login type:</p>
+      <div class="options">
+        <button class="login-option" onclick="redirectToLogin('fuel')">
+          <div class="option-icon">⛽</div>
+          <div class="option-text">Fuel Station</div>
+        </button>
+        <button class="login-option" onclick="redirectToLogin('user')">
+          <div class="option-icon">👤</div>
+          <div class="option-text">User</div>
+        </button>
+        <button class="login-option" onclick="redirectToLogin('deliveryman')">
+          <div class="option-icon">🚚</div>
+          <div class="option-text">Deliveryman</div>
+        </button>
+      </div>
+          </div>
+  </div>
+</div>
+
+<script>
+  // Redirect based on login type
+  function redirectToLogin(type) {
+      if (type === 'fuel') {
+          window.location.href = "StationLogin.html"; // Adjust as necessary
+      } else if (type === 'user') {
+          window.location.href = "UserLogin.html"; // Adjust as necessary
+      } else if (type === 'deliveryman') {
+          window.location.href = "DeliveryManLogin.html"; // Adjust as necessary
+      }
+  }
+
+  // Back button functionality
+  function goBack() {
+      window.location.href="index.html";  // Takes the user to the previous page in history
+  }
+</script>
+
+</body>
+</html>

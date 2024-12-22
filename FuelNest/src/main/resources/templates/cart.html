@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Fuel Nest</title>
+    <style>
+        /* Basic Reset and Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .cart-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 2;
+        }
+        .item-info h3 {
+            font-size: 1rem;
+            color: #333;
+        }
+        .item-quantity, .item-price, .item-actions {
+            flex: 1;
+            text-align: center;
+        }
+        .item-quantity input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+        }
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #ffcc00;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .checkout-btn:hover {
+            background-color: #333;
+            color: #ffcc00;
+        }
+        .remove-btn {
+            color: #f44336;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .remove-btn:hover {
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+<div class="cart-container">
+
+    <!-- Example Cart Item -->
+    <div class="cart-item">
+        <div class="item-info">
+            <h3>Petrol</h3>
+            <p>$3.50 per liter</p>
+        </div>
+        <div class="item-quantity">
+            <input type="number" value="1" min="1">
+        </div>
+        <div class="item-price">
+            <p>$3.50</p>
+        </div>
+        <div class="item-actions">
+            <span class="remove-btn">Remove</span>
+        </div>
+    </div>
+
+    <div class="cart-item">
+        <div class="item-info">
+            <h3>Diesel</h3>
+            <p>$3.20 per liter</p>
+        </div>
+        <div class="item-quantity">
+            <input type="number" value="2" min="1">
+        </div>
+        <div class="item-price">
+            <p>$6.40</p>
+        </div>
+        <div class="item-actions">
+            <span class="remove-btn">Remove</span>
+        </div>
+    </div>
+
+    <!-- Total Calculation Section -->
+    <div class="total-section">
+        <p>Total:</p>
+        <p>$9.90</p>
+    </div>
+
+    <!-- Checkout Button -->
+    <a href="#" class="checkout-btn">Proceed to Checkout</a>
+</div>
+
+</body>
+</html>
